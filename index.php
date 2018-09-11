@@ -1,3 +1,7 @@
+<?php
+  include('connect.php');
+  include('class\classProduct.php');
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,8 +15,17 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
-
+    <h1>Random products</h1>
+      <?php
+      $sql = new PDO($sqlAddress,$user,$pass);
+      
+      $product = new Product($sql);
+      $product->displayRandomArray();
+      echo '<br/>';
+      $product->createMinusStockArray();
+      echo '<br/>';
+      print_r($product->topProducts(15));
+      ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
